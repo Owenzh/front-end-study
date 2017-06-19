@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta chatset="utf8">
     <title>兰州料理菜单管理</title>
     <style></style>
-    <script></script>
+    <script>
+        function addMenu() {
+            //输入菜品信息对话框
+            var menu = window.prompt('菜品信息');
+            var mL = window.document.getElementById('menu-list');
+            var oldML = mL.innerHTML;
+            var newML = oldML + '<p>' + menu + '</p>';
+            mL.innerHTML = newML;
+        }
+    </script>
 </head>
+
 <body>
-    <p></p>
-    <ul>
-    <li></li>
-    <li></li>
-    </ul>
+    <button onclick="addMenu();">新增菜品</button>
+    <div id="menu-list"></div>
 </body>
+
 </html>
