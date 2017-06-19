@@ -1,7 +1,6 @@
-# front-end-study
-There are many code examples that guide the Beginner for font-end learning path. 
+# 前端学习指南
 
-## Content
+## 内容
 
-### Part one
+### 第一部分
 
