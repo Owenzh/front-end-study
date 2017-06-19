@@ -11,7 +11,7 @@
             var menu = window.prompt('菜品信息');
             var mL = window.document.getElementById('menu-list');
             var oldML = mL.innerHTML;
-            var newML = oldML + '<p>' + menu + '</p>';
+            var newML = oldML + '<li>' + menu + '</li>';
             mL.innerHTML = newML;
         }
     </script>
@@ -19,7 +19,7 @@
 
 <body>
     <button onclick="addMenu();">新增菜品</button>
-    <div id="menu-list"></div>
+    <ol id="menu-list"></ol>
 </body>
 
 </html>
