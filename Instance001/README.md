@@ -1,5 +1,3 @@
-
-
 ## 【兰州料理的菜单管理】
 >应用原生JavaScript来实现
 ## 基本功能描述
@@ -13,17 +11,3 @@
 3. 待续
 
 
-
-
-
-
-
-<script src='https://code.jquery.com/jquery-1.12.4.min.js'/>
-<script type="text/javascript">
-	$(document).ready(function() {
-	    //为超链接加上target='_blank'属性
-		$('a[href^="http"]').each(function() {
-			$(this).attr('target', '_blank');
-		});
-	});
-</script>
