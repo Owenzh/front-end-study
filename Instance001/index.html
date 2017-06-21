@@ -4,9 +4,32 @@
 <head>
     <meta chatset="utf8">
     <title>兰州料理菜单管理</title>
-    <style></style>
+    <style>
+        div.popup {
+            position: absolute;
+            width: 650;
+            height: auto;
+            text-align: center;
+            z-index: 99;
+            background-color: #ccc;
+            top: 5%;
+            left: 30%;
+            /*margin-top: -50px;*/
+            /*margin-left: -50px;*/
+        }
+        div.graydiv {
+            position: absolute;
+            width: 2000px;
+            height: 1964px;
+            z-index: 90;
+            top:0;
+            left: 0;
+            opacity: 0.5;
+            background-color: #ccc;
+        }
+    </style>
     <script>
-        if(window.localStorage){
+        if (window.localStorage) {
             console.log('Support localStorage!!!');
         }
         function addMenu() {
@@ -23,6 +46,12 @@
 <body>
     <button onclick="addMenu();">新增菜品</button>
     <ol id="menu-list"></ol>
+    <div class="graydiv"></div>
+    <div class="popup">
+        <p><span>菜品名称</span><input type="text" id="cname"></p>
+        <p><span>菜品价格</span><input type="text" id="cprice"></p>
+        <p class="btn"><button id="confirm" value="ok">确定</button><button id="close" value="close">关闭</button></p>
+    </div>
 </body>
 
 </html>
