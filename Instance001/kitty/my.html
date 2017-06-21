@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title>四川料理菜单管理</title>
 		<link rel="stylesheet" href="css/main.css" />
 		<script src="js/jquery-1.11.1.min.js"></script>
 	</head>
+
 	<body>
-		
+
 		<div id='stars'></div>
 		<div id='stars2'></div>
 		<div id='stars3'></div>
@@ -37,51 +39,53 @@
 			<span class="target"></span>
 			<div class="panel-box">
 				<table class="caidan" id="caidanTable" cellspacing="0">
-				<thead>
-					<tr>
-						<td>序号</td>
-						<td>菜名称</td>
-						<td>菜图片</td>
-						<td>菜价格</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>1 <input type="checkbox" name="checkbox"></td>
-						<td>水煮肉</td>
-						<td><img src="img/1.jpg"></td>
-						<td>￥36.00元</td>
-					</tr>
-					<tr>
-						<td>2 <input type="checkbox" name="checkbox"></td>
-						<td>鱼香肉丝</td>
-						<td><img src="img/2.jpg"></td>
-						<td>￥38.00元</td>
-					</tr>
-					<tr>
-					    <td>3 <input type="checkbox" name="checkbox"></td>
-						<td>四川干煎鸡</td>
-						<td><img src="img/3.jpg"></td>
-						<td>￥28.00元</td>
-					</tr>
-					<tr>
-						<td>4 <input type="checkbox" name="checkbox"></td>
-						<td>麻婆豆腐</td>
-						<td><img src="img/4.jpg"></td>
-						<td>￥18.00元</td>
-					</tr>
-				</tbody>
-			</table>
-			<div class="caidan-btn">
-				<button class="add-caidan" style="margin-right: 30px;" onclick="show()">添加菜单</button>
-				<button class="dele-caidan" onclick="delTableRow()">删除菜单</button>
+					<thead>
+						<tr>
+							<td>序号</td>
+							<td>菜名称</td>
+							<td>菜图片</td>
+							<td>菜价格</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1 <input type="checkbox" name="checkbox"></td>
+							<td>水煮肉</td>
+							<td><img src="img/1.jpg"></td>
+							<td>￥36.00元</td>
+						</tr>
+						<tr>
+							<td>2 <input type="checkbox" name="checkbox"></td>
+							<td>鱼香肉丝</td>
+							<td><img src="img/2.jpg"></td>
+							<td>￥38.00元</td>
+						</tr>
+						<tr>
+							<td>3 <input type="checkbox" name="checkbox"></td>
+							<td>四川干煎鸡</td>
+							<td><img src="img/3.jpg"></td>
+							<td>￥28.00元</td>
+						</tr>
+						<tr>
+							<td>4 <input type="checkbox" name="checkbox"></td>
+							<td>麻婆豆腐</td>
+							<td><img src="img/4.jpg"></td>
+							<td>￥18.00元</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="caidan-btn">
+					<button class="add-caidan" style="margin-right: 30px;" onclick="show()">添加菜单</button>
+					<button class="dele-caidan" onclick="delTableRow()">删除菜单</button>
+				</div>
 			</div>
-			</div>
-			
+
 		</div>
 		<div class="tck-back" id="anotherDiv_back" style="display: none;"></div>
 		<div class="tck-box" id="anotherDiv" style="display: none;">
-			<div class="tck-close"><a onclick="show();" href="javascript:;">X</a></div>
+			<div class="tck-close">
+				<a onclick="show();" href="javascript:;">X</a>
+			</div>
 			<table class="caidan" cellspacing="0" style="margin-top: 0; margin-bottom: 30px;">
 				<thead>
 					<tr>
@@ -103,32 +107,33 @@
 			<button id="sure" class="dele-caidan" style="float: right; margin-right: 50px; margin-bottom: 30px;">确定</button>
 		</div>
 		<script type="text/javascript">
-			function show(){
+			function show() {
 				$("#anotherDiv_back").toggle();
 				$("#anotherDiv").toggle();
 			}
-			$(document).ready(function(){
-				$("#sure").click(function(){
-					var xuhao= document.getElementById("xuhao").value;
-					var cainame= document.getElementById("cainame").value;
-					var caipic= document.getElementById("caipic").value;
-					var caivalu= document.getElementById("caivalu").value;
-					var html = "<tr><td>"+xuhao+" <input type='checkbox' name='checkbox'></td><td>"+cainame+"</td><td>"+caipic+"</td><td>"+caivalu+"</td></tr>";
+			$(document).ready(function() {
+				$("#sure").click(function() {
+					var xuhao = document.getElementById("xuhao").value;
+					var cainame = document.getElementById("cainame").value;
+					var caipic = document.getElementById("caipic").value;
+					var caivalu = document.getElementById("caivalu").value;
+					var html = "<tr><td>" + xuhao + " <input type='checkbox' name='checkbox'></td><td>" + cainame + "</td><td>" + caipic + "</td><td>" + caivalu + "</td></tr>";
 					$("#caidanTable tbody").append(html);
-			        $("#anotherDiv_back").hide();
+					$("#anotherDiv_back").hide();
 					$("#anotherDiv").hide();
 				});
 			});
-			function delTableRow(){
-			    var boxes = document.getElementsByName("checkbox");
-			    for(i=0;i<boxes.length;i++){
-			        if(boxes[i].checked){
-			            tr = boxes[i].parentNode.parentNode;
-			            tr.parentNode.removeChild(tr);
-			        }
-			    }
+
+			function delTableRow() {
+				var boxes = document.getElementsByName("checkbox");
+				for(i = 0; i < boxes.length; i++) {
+					if(boxes[i].checked) {
+						tr = boxes[i].parentNode.parentNode;
+						tr.parentNode.removeChild(tr);
+					}
+				}
 			}
-        </script>
+		</script>
 		<script>
 			"use strict";
 			(function() {
@@ -187,4 +192,5 @@
 			})();
 		</script>
 	</body>
+
 </html>
