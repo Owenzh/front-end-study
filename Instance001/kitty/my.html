@@ -1,22 +1,14 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title>四川料理菜单管理</title>
 		<link rel="stylesheet" href="css/main.css" />
 		<script src="js/jquery-1.11.1.min.js"></script>
-		<script type="text/javascript">
-			$(function() {
-				$("#checkAll").click(function() {
-					$('input[name="checkbox"]').attr("checked", this.checked);
-				});
-				var $subBox = $("input[name='checkbox']");
-				$subBox.click(function() {
-					$("#checkAll").attr("checked", $subBox.length == $("input[name='checkbox']:checked").length ? true : false);
-				});
-			});
-		</script>
+
 	</head>
+
 	<body>
 		<div id='stars'></div>
 		<div id='stars2'></div>
@@ -85,7 +77,7 @@
 				<div class="caidan-btn">
 					<div style="float: left;"><input type="checkbox" id="checkAll"> 全选</div>
 					<button class="add-caidan" style="margin-right: 30px;" onclick="show()">添加菜单</button>
-					<button class="dele-caidan" onclick="delTableRow()">删除菜单</button>
+					<button class="dele-caidan" id="dele-caidan">删除菜单</button>
 				</div>
 			</div>
 
@@ -133,17 +125,24 @@
 					$("#anotherDiv").hide();
 				});
 			});
-
-			function delTableRow() {
-				var boxes = document.getElementsByName("checkbox");
-				for(i = 0; i < boxes.length; i++) {
-					if(boxes[i].checked) {
-						tr = boxes[i].parentNode.parentNode;
-						tr.parentNode.removeChild(tr);
-					}
-				}
-			}
 		</script>
-		
+		<script type="text/javascript">
+			$(function() {
+				$("#checkAll").click(function() {
+					var isChecked = $(this).prop("checked");
+					$("input[name='checkbox']").prop("checked", isChecked);
+				});
+			});
+			$(function() {
+				$("#dele-caidan").click(function() {
+					$("input[name='checkbox']:checked").each(function() { // 遍历选中的checkbox
+						n = $(this).parents("tr").index(); // 获取checkbox所在行的顺序
+						$("table#caidanTable tbody").find("tr:eq(" + n + ")").remove();
+					});
+				});
+			});
+		</script>
+
 	</body>
+
 </html>
