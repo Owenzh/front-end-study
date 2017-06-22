@@ -109,27 +109,23 @@
 		</div>
 		<script src="js/main-menu.js"></script>
 		<script type='text/javascript'>
-	       var oTest=document.getElementById('xuhao');
-	       var oValue=document.getElementById('caivalu');
-	       oTest.onkeydown=function(ev)
-	       {
-	           var oEvent=ev||event;
-	          if((oEvent.keyCode<48||oEvent.keyCode>57)&&oEvent.keyCode!=8&&oEvent.keyCode!=13)
-	          {
-	               alert('请输入序号!');
-	               return false;
-	          }
-	       }
-	       oValue.onkeydown=function(ev)
-	       {
-	           var oEvent=ev||event;
-	          if((oEvent.keyCode<48||oEvent.keyCode>57)&&oEvent.keyCode!=8&&oEvent.keyCode!=13)
-	          {
-	               alert('请输入价格!');
-	               return false;
-	          }
-	       }
-	   </script>
+			var oTest = document.getElementById('xuhao');
+			var oValue = document.getElementById('caivalu');
+			oTest.onkeydown = function(ev) {
+				var oEvent = ev || event;
+				if((oEvent.keyCode < 48 || oEvent.keyCode > 57) && oEvent.keyCode != 8 && oEvent.keyCode != 13) {
+					alert('请输入数字!');
+					return false;
+				}
+			}
+			oValue.onkeydown = function(ev) {
+				var oEvent = ev || event;
+				if((oEvent.keyCode < 48 || oEvent.keyCode > 57) && oEvent.keyCode != 8 && oEvent.keyCode != 13) {
+					alert('请输入数字!');
+					return false;
+				}
+			}
+		</script>
 		<script type="text/javascript">
 			function show() {
 				$("#anotherDiv_back").toggle();
@@ -142,9 +138,14 @@
 					var caipic = document.getElementById("caipic").value;
 					var caivalu = document.getElementById("caivalu").value;
 					var html = "<tr><td>" + xuhao + " <input type='checkbox' name='checkbox'></td><td>" + cainame + "</td><td>" + caipic + "</td><td>" + caivalu + "</td></tr>";
-					$("#caidanTable tbody").append(html);
-					$("#anotherDiv_back").hide();
-					$("#anotherDiv").hide();
+					if(xuhao == null || xuhao == undefined || xuhao == "") {
+						alert('不能为空!');
+						return false;
+					} else {
+						$("#caidanTable tbody").append(html);
+						$("#anotherDiv_back").hide();
+						$("#anotherDiv").hide();
+					}
 				});
 			});
 			$(function() {
@@ -162,7 +163,13 @@
 				});
 			});
 		</script>
-
+		<!--<script type="text/javascript">
+		 function testContent(obj){
+			if(document.getElementById(obj).value.length==0){
+				alert('不能为空');
+				}
+			}
+		</script>-->
 	</body>
 
 </html>
