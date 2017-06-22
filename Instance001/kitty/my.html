@@ -133,10 +133,10 @@
 			}
 			$(document).ready(function() {
 				$("#sure").click(function() {
-					var xuhao = document.getElementById("xuhao").value;
-					var cainame = document.getElementById("cainame").value;
-					var caipic = document.getElementById("caipic").value;
-					var caivalu = document.getElementById("caivalu").value;
+					var xuhao = $("#xuhao").val();
+					var cainame = $("#cainame").val();
+					var caipic = $("#caipic").val();
+					var caivalu = $("#caivalu").val();
 					var html = "<tr><td>" + xuhao + " <input type='checkbox' name='checkbox'></td><td>" + cainame + "</td><td>" + caipic + "</td><td>" + caivalu + "</td></tr>";
 					if(xuhao == null || xuhao == undefined || xuhao == "") {
 						alert('不能为空!');
