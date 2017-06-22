@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="UTF-8">
 		<title>四川料理菜单管理</title>
 		<link rel="stylesheet" href="css/main.css" />
 		<script src="js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$("#checkAll").click(function() {
+					$('input[name="checkbox"]').attr("checked", this.checked);
+				});
+				var $subBox = $("input[name='checkbox']");
+				$subBox.click(function() {
+					$("#checkAll").attr("checked", $subBox.length == $("input[name='checkbox']:checked").length ? true : false);
+				});
+			});
+		</script>
 	</head>
-
 	<body>
-
 		<div id='stars'></div>
 		<div id='stars2'></div>
 		<div id='stars3'></div>
@@ -44,7 +52,7 @@
 							<td>序号</td>
 							<td>菜名称</td>
 							<td>菜图片</td>
-							<td>菜价格</td>
+							<td>菜价格（元）</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -52,29 +60,30 @@
 							<td>1 <input type="checkbox" name="checkbox"></td>
 							<td>水煮肉</td>
 							<td><img src="img/1.jpg"></td>
-							<td>￥36.00元</td>
+							<td>￥36.00</td>
 						</tr>
 						<tr>
 							<td>2 <input type="checkbox" name="checkbox"></td>
 							<td>鱼香肉丝</td>
 							<td><img src="img/2.jpg"></td>
-							<td>￥38.00元</td>
+							<td>￥38.00</td>
 						</tr>
 						<tr>
 							<td>3 <input type="checkbox" name="checkbox"></td>
 							<td>四川干煎鸡</td>
 							<td><img src="img/3.jpg"></td>
-							<td>￥28.00元</td>
+							<td>￥28.00</td>
 						</tr>
 						<tr>
 							<td>4 <input type="checkbox" name="checkbox"></td>
 							<td>麻婆豆腐</td>
 							<td><img src="img/4.jpg"></td>
-							<td>￥18.00元</td>
+							<td>￥18.00</td>
 						</tr>
 					</tbody>
 				</table>
 				<div class="caidan-btn">
+					<div style="float: left;"><input type="checkbox" id="checkAll"> 全选</div>
 					<button class="add-caidan" style="margin-right: 30px;" onclick="show()">添加菜单</button>
 					<button class="dele-caidan" onclick="delTableRow()">删除菜单</button>
 				</div>
@@ -96,16 +105,17 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td><input type="text" id="xuhao" value=""></td>
-						<td><input type="text" id="cainame" value=""></td>
-						<td><input type="text" id="caipic" value=""></td>
-						<td><input type="text" id="caivalu" value=""></td>
+					<tr id="signupForm">
+						<td><input type="text" id="xuhao" name="xuhao" value=""></td>
+						<td><input type="text" id="cainame" name="cainame" value=""></td>
+						<td><input type="text" id="caipic" name="caipic" value=""></td>
+						<td><input type="text" id="caivalu" name="caivalu" value="￥"></td>
 					</tr>
 				</tbody>
 			</table>
-			<button id="sure" class="dele-caidan" style="float: right; margin-right: 50px; margin-bottom: 30px;">确定</button>
+			<input id="sure" type="submit" class="dele-caidan" style="float: right; margin-right: 50px; margin-bottom: 30px;" value="提交">
 		</div>
+		<script src="js/main-menu.js"></script>
 		<script type="text/javascript">
 			function show() {
 				$("#anotherDiv_back").toggle();
@@ -134,63 +144,6 @@
 				}
 			}
 		</script>
-		<script>
-			"use strict";
-			(function() {
-
-				var target = document.querySelector(".target");
-				var links = document.querySelectorAll(".mynav a");
-				var colors = ["deepskyblue", "orange", "firebrick", "gold", "magenta", "black", "darkblue"];
-
-				function mouseenterFunc() {
-					if(!this.parentNode.classList.contains("active")) {
-						for(var i = 0; i < links.length; i++) {
-							if(links[i].parentNode.classList.contains("active")) {
-								links[i].parentNode.classList.remove("active");
-							}
-							links[i].style.opacity = "0.25";
-						}
-
-						this.parentNode.classList.add("active");
-						this.style.opacity = "1";
-
-						var width = this.getBoundingClientRect().width;
-						var height = this.getBoundingClientRect().height;
-						var left = this.getBoundingClientRect().left + window.pageXOffset;
-						var top = this.getBoundingClientRect().top + window.pageYOffset;
-						var color = colors[Math.floor(Math.random() * colors.length)];
-
-						target.style.width = width + "px";
-						target.style.height = height + "px";
-						target.style.left = left + "px";
-						target.style.top = top + "px";
-						target.style.borderColor = color;
-						target.style.transform = "none";
-					}
-				}
-
-				for(var i = 0; i < links.length; i++) {
-					links[i].addEventListener("click", function(e) {
-						return e.preventDefault();
-					});
-					links[i].addEventListener("mouseenter", mouseenterFunc);
-				}
-
-				function resizeFunc() {
-					var active = document.querySelector(".mynav li.active");
-
-					if(active) {
-						var left = active.getBoundingClientRect().left + window.pageXOffset;
-						var top = active.getBoundingClientRect().top + window.pageYOffset;
-
-						target.style.left = left + "px";
-						target.style.top = top + "px";
-					}
-				}
-
-				window.addEventListener("resize", resizeFunc);
-			})();
-		</script>
+		
 	</body>
-
 </html>
