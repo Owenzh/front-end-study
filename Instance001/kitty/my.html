@@ -108,6 +108,28 @@
 			<input id="sure" type="submit" class="dele-caidan" style="float: right; margin-right: 50px; margin-bottom: 30px;" value="提交">
 		</div>
 		<script src="js/main-menu.js"></script>
+		<script type='text/javascript'>
+	       var oTest=document.getElementById('xuhao');
+	       var oValue=document.getElementById('caivalu');
+	       oTest.onkeydown=function(ev)
+	       {
+	           var oEvent=ev||event;
+	          if((oEvent.keyCode<48||oEvent.keyCode>57)&&oEvent.keyCode!=8&&oEvent.keyCode!=13)
+	          {
+	               alert('请输入序号!');
+	               return false;
+	          }
+	       }
+	       oValue.onkeydown=function(ev)
+	       {
+	           var oEvent=ev||event;
+	          if((oEvent.keyCode<48||oEvent.keyCode>57)&&oEvent.keyCode!=8&&oEvent.keyCode!=13)
+	          {
+	               alert('请输入价格!');
+	               return false;
+	          }
+	       }
+	   </script>
 		<script type="text/javascript">
 			function show() {
 				$("#anotherDiv_back").toggle();
@@ -125,8 +147,6 @@
 					$("#anotherDiv").hide();
 				});
 			});
-		</script>
-		<script type="text/javascript">
 			$(function() {
 				$("#checkAll").click(function() {
 					var isChecked = $(this).prop("checked");
