@@ -5,41 +5,73 @@
     <meta chatset="utf8">
     <title>兰州料理菜单管理</title>
     <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+
         div.popup {
+            display: none;
             position: absolute;
-            width: 650;
+            width: auto;
             height: auto;
+            line-height: 30px;
+            padding: 10px 10px;
             text-align: center;
             z-index: 99;
             background-color: #ccc;
             top: 5%;
             left: 30%;
-            /*margin-top: -50px;*/
-            /*margin-left: -50px;*/
         }
+
+        div.popup span.closeIcon {
+            display: block;
+            float: right;
+            font-size: 12px;
+            margin: -10px -8px;
+            color: darkmagenta;
+        }
+
+        span.closeIcon+p {
+            clear: both;
+        }
+
+        span.closeIcon:visited {
+            color: blue;
+        }
+
         div.graydiv {
+            display: none;
             position: absolute;
             width: 2000px;
             height: 1964px;
             z-index: 90;
-            top:0;
+            top: 0;
             left: 0;
-            opacity: 0.5;
+            opacity: 0.3;
             background-color: #ccc;
         }
     </style>
     <script>
+        function closePopup(){
+            var popup = document.getElementsByClassName('popup')[0];
+            var graydiv = document.getElementsByClassName('graydiv')[0];
+            graydiv.style.display = 'none';
+            popup.style.display = 'none';
+        }
+        function openPopup(){
+            var popup = document.getElementsByClassName('popup')[0];
+            var graydiv = document.getElementsByClassName('graydiv')[0];
+            graydiv.style.display = 'block';
+            popup.style.display = 'block';
+        }
         if (window.localStorage) {
             console.log('Support localStorage!!!');
         }
         function addMenu() {
-            //输入菜品信息对话框
-            var menu = window.prompt('菜品信息');
-            var mL = window.document.getElementById('menu-list');
-            var oldML = mL.innerHTML;
-            var newML = oldML + '<li>' + menu + '</li>';
-            mL.innerHTML = newML;
+            openPopup();
         }
+
     </script>
 </head>
 
@@ -48,9 +80,10 @@
     <ol id="menu-list"></ol>
     <div class="graydiv"></div>
     <div class="popup">
+        <span class="closeIcon" onclick="closePopup();">[关闭]</span>
         <p><span>菜品名称</span><input type="text" id="cname"></p>
         <p><span>菜品价格</span><input type="text" id="cprice"></p>
-        <p class="btn"><button id="confirm" value="ok">确定</button><button id="close" value="close">关闭</button></p>
+        <p class="btn"><button id="confirm" value="ok">确定</button><button id="close" value="close" onclick="closePopup();">关闭</button></p>
     </div>
 </body>
 
