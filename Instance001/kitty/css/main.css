@@ -8,6 +8,9 @@ a {
 	text-decoration: none;
 	cursor: pointer;
 }
+button {
+	cursor: pointer;
+}
 #stars {
   width: 1px;
   height: 1px;
@@ -142,7 +145,7 @@ a {
 	padding: 10px;
 }
 .caidan-btn {
-	margin: 20px 5% 0 0;
+	margin: 20px 5% 0 7.5%;
 	text-align: right;
 }
 .add-caidan {
@@ -176,3 +179,33 @@ a {
 	text-align: right;
 	padding: 30px;
 }
+.count {
+    width: 90px;
+    text-align: center;
+}
+.count .add, .count .reduce {
+    height: 23px;
+    width: 17px;
+    text-align: center;
+    line-height: 23px;
+    color: #fff;
+}
+.count input {
+    width: 50px;
+    height: 15px;
+    line-height: 15px;
+    border: 1px solid #aaa;
+    color: #343434;
+    text-align: center;
+    padding: 4px 0;
+    background-color: #fff;
+    z-index: 2;
+}
+.u-flyer {
+	display: block;
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+	position: fixed;
+	z-index: 9999;
+	}
