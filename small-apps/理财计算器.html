@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf8">
+    <title>理财计算器</title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .prod_section {
+            border: 2px solid #ff8000;
+            width: 70%;
+        }
+
+        .prod_section h1 {
+            font-size: 1.5em;
+        }
+
+        .prod_section p>label {
+            width: 100px;
+            display: inline-block;
+            padding-left: 20px;
+        }
+
+        .oupt {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+
+        .oupt span {
+            color: #f50a5c
+        }
+
+        .save_section {
+            display: none;
+            padding-left: 20px;
+        }
+
+        .list-item>span {
+            display: inline-block;
+            margin-top: 6px;
+            max-width: 200px;
+            min-width: 150px;
+            text-align: center;
+            background-color: #ada952;
+            opacity: .8;
+            color: #ffffff;
+            font-size: 14px;
+            border-radius: none;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 5px;
+            padding: 2px;
+        }
+
+        .list-item>span:hover {
+            cursor: pointer;
+            opacity: 1;
+        }
+
+        .list-item {
+            list-style: none;
+        }
+
+        .item-content {
+            padding-left: 20px;
+            border: 1px solid #ada952;
+            max-width: 300px;
+            min-width: 150px;
+            border-radius: none;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .item-content>p>label {
+            display: inline-block;
+            width: 100px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="prod_section">
+        <h1>大象理财净收益计算</h1>
+        <section class="inpt">
+            <p><label for="year_rate">年化收益率：</label><input type="text" id="year_rate" name="year_rate"></p>
+            <p><label for="oper_days">操作天数：</label><input type="text" id="oper_days" name="oper_days"></p>
+            <p><label for="invest_cash">本金：</label><input type="text" id="invest_cash" name="invest_cash"></p>
+            <p><label>计算净收益</label><button id="cal_net_btn" onclick="cal_net_dx();">净收益</button></p>
+        </section>
+        <p class="oupt" id="net_out">
+        </p>
+        <p class="save_section"><button onclick="save_cal();">保存本次计算结果</button></p>
+    </div>
+    <ul id="history_section">
+    </ul>
+    <script>
+        var _gg = {};
+        var appKey = 'd-x-f-1-0-0-1';
+        var evTimeStamp = 0;
+        function setG(k, v) {
+            _gg[k] = v;
+        }
+        function getG() {
+            return _gg;
+        }
+        function clearG() {
+            _gg = {};
+        }
+        function cal_net_dx() {
+            clearG();
+            var year_rate = parseInt(document.getElementById('year_rate').value);
+            var oper_days = parseInt(document.getElementById('oper_days').value);
+            var invest_cash = parseInt(document.getElementById('invest_cash').value);
+            var net = (year_rate * (invest_cash * (oper_days / 360))) / 100;
+            net = net.toFixed(3);
+            var netStr = '约等于：<span>' + net + '</span> 元'
+            setG('rate', year_rate);
+            setG('days', oper_days);
+            setG('cash', invest_cash);
+            setG('net', net);
+            document.getElementById('net_out').innerHTML = netStr;
+            toggleClass('save_section', false);
+        }
+        function toggleClass(_className, isHidden) {
+            var target = document.getElementsByClassName(_className)[0];
+            target.style.display = (isHidden ? 'none' : 'block');
+        }
+        function save_cal() {
+            var label = window.prompt('设置一个标签：');
+            if (label != null && label != '') {
+                console.log(label);
+                setG('label', label);
+                var g = getG();
+                console.log(JSON.stringify(g));
+                saveCalResult(label, JSON.stringify(g));
+                // clearForm();
+            }
+            refreshPage();
+        }
+        function refreshPage() {
+            var url = window.location.href;
+            window.location.href = url;
+        }
+        function clearForm() {
+            document.getElementById('year_rate').value = "";
+            document.getElementById('oper_days').value = "";
+            document.getElementById('invest_cash').value = "";
+            document.getElementById('net_out').innerHTML = "";
+        }
+        function saveCalResult(key, strVal) {
+            var store = window.localStorage;
+            var his_res = store.getItem(appKey);
+            if (his_res == null) his_res = [];
+            else {
+                his_res = his_res.split('^');
+            }
+            his_res.push(strVal);
+            store.setItem(appKey, his_res.join("^"));
+        }
+
+        function readHistory() {
+            var store = window.localStorage;
+            var his_res = store.getItem(appKey);
+            if (his_res == null) return;
+            his_res = his_res.split('^');
+            var history_section = document.getElementById('history_section');
+            for (var i = 0; his_res[i]; i++) {
+                initHistoryEle(history_section, his_res[i], i + 1);
+            }
+        }
+        function eventProxy() {
+            // 获取父节点，并为它添加一个click事件
+            document.getElementById("history_section").addEventListener("click", function (e) {
+                // 检查事件源e.targe是否为Li
+                // var isClicked = true;
+                if (e.target && e.target.nodeName.toUpperCase() == "SPAN") {
+                    // 真正的处理过程在这里
+                    var now = +new Date();
+                    if (now - evTimeStamp < 100) {
+                        return;
+                    }
+                    evTimeStamp = now;
+                    console.log("List item " + e.target.id + " was clicked!");
+                    var content = document.getElementById(e.target.id.replace('li', 'c'));
+                    if (content.style.display == 'block') {
+                        content.style.display = 'none';
+                    } else {
+                        content.style.display = 'block';
+                    }
+                }
+            });
+        }
+        function initHistoryEle(his_sec, eleStr, idx) {
+            var convertedEle = JSON.parse(eleStr);
+            var index = 'li_' + idx;
+            var contentIdx = 'c_' + idx;
+            var label = convertedEle.label;
+            var rate = convertedEle.rate;
+            var days = convertedEle.days;
+            var cash = convertedEle.cash;
+            var net = convertedEle.net;
+            var listItem = '<li class="list-item">';
+            listItem += '<span id="' + index + '">' + label + '</span>';
+            listItem += '<div id="' + contentIdx + '" style="display:none" class="item-content">'
+            listItem += '<p><label>年化收益率：</label><span>' + rate + '</span></p>';
+            listItem += '<p><label>操作天数：</label><span>' + days + '</span></p>';
+            listItem += '<p><label>本金：</label><span>' + cash + '</span></p>';
+            listItem += '<p><label>净收益：</label><span>' + net.replace('约等于:', '') + '</span></p>';
+            listItem += '</div>';
+            listItem += '</li>';
+
+            his_sec.innerHTML += listItem;
+            setTimeout(eventProxy, 500);
+        }
+
+        window.onload = readHistory;
+    </script>
+</body>
+
+</html>
