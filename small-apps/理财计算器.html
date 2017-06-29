@@ -41,6 +41,10 @@
             padding-left: 20px;
         }
 
+        ul#history_section {
+            margin-left: -35px;
+        }
+
         .list-item>span {
             display: inline-block;
             margin-top: 6px;
@@ -64,6 +68,8 @@
 
         .list-item {
             list-style: none;
+            /*float: left;*/
+            /*margin-left: 80px;*/
         }
 
         .item-content {
@@ -120,6 +126,10 @@
             var invest_cash = parseInt(document.getElementById('invest_cash').value);
             var net = (year_rate * (invest_cash * (oper_days / 360))) / 100;
             net = net.toFixed(3);
+            if(isNaN(net)){
+                alert('请输入正确数据...');
+                return;
+            }
             var netStr = '约等于：<span>' + net + '</span> 元'
             setG('rate', year_rate);
             setG('days', oper_days);
