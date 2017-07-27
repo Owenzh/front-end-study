@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <style>
+         ::-ms-clear {
+         display: none;
+         }
+         #mytext {
+			 width: 100px;
+			 height: 30px;
+			 padding: 0 10px;
+			 text-overflow: ellipsis;
+			 white-space: nowrap;
+			 overflow: hidden;
+         } 
+		 #mytext12 {
+			 width: 100px;
+			 height: 30px;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+			
+         }
+		 #mytext1::-webkit-input-placeholder{
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+			background-color: #ee1;
+		 }
+		 /*Edge hack*/
+		 #mytext1::-ms-input-placeholder{
+			text-overflow: ellipsis;
+			-ms-text-overflow: ellipsis;
+			white-space: nowrap;
+			 overflow: hidden;
+			/*background-color: #f93;*/
+		 }
+		 /*IE hack*/
+		#mytext1:-ms-input-placeholder{
+			text-overflow: ellipsis;
+			-ms-text-overflow: ellipsis;
+			white-space: nowrap;
+			 overflow: hidden;
+			background-color: yellow; 
+		 }
+		.picture {
+			width:200px;
+			height:200px;
+			background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221024%22%20height%3D%22576%22%20viewBox%3D%220%200%201024%20576%22%3E%3Cpath%20fill%3D%22%23395c81%22%20d%3D%22M1024%2064q0%2026-19%2045L557%20557q-19%2019-45%2019t-45-19L19%20109Q0%2090%200%2064t19-45T64%200h896q26%200%2045%2019t19%2045z%22%2F%3E%3C%2Fsvg%3E');
+			background-size: 18px auto;
+			background-repeat: no-repeat;
+			background-position:  100% 100%;
+			padding-right: 30px;
+		}
+		.test { 
+			width:200px;
+			height:200px;
+			background-image: url("data:image/svg+xml;charset=utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10'><linearGradient id='gradient'><stop offset='10%' stop-color='#F00'/><stop offset='90%' stop-color='#fcc'/> </linearGradient><rect fill='url(#gradient)' x='0' y='0' width='100%' height='100%'/></svg>");
+		}
+      </style>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+   </head>
+   <body>
+      <input type="text" id="mytext" placeholder="Enter somethinghere is too long!" readonly />
+	  
+	  <input type="text" id="mytext1" placeholder="Enter somethinghere is too long!"  />
+	  <div class="picture"> </div>
+	  <div class="test"> </div>
+      <script> 
+         $(function() {
+         //
+         //	making the input editable
+         			$('#mytext' ).on( 'click', function(e) {
+						var thiz = this;
+						console.log(e);
+						//e.preventDefault();
+						 
+         				$( this ).prop( 'readonly', '' );
+						//setTimeout(function(){
+						$( thiz ).blur();
+						$( thiz ).focus();
+						//},100);
+					
+						
+         			});
+         
+         			// making the input readonly
+         			$( '#mytext' ).on( 'blur', function() {
+         				$( this ).prop( 'readonly', 'readonly' );
+         			});
+					
+					var wp = $("#mytext1").width();
+					var placeholderW = $("#mytext1").attr('placeholder');
+					var fake = $('<span id="fakeDom" style="display:none">'+placeholderW+'</span>');
+					$('body').append(fake);
+					var ws = $('#fakeDom').width();
+					var N = placeholderW.length;
+					var X = Math.ceil((wp/ws)*N);
+					
+					var offset = 3;
+					var showStr = placeholderW.substr(0,X-3);
+					showStr+='...';
+				
+					$("#mytext1").attr('placeholder',showStr);
+         });
+      </script>
+   </body>
+</html>
