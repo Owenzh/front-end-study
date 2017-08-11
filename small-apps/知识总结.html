@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- http://linuxtools-rst.readthedocs.io/zh_CN/latest/index.html -->
 <html>
 
 	<head>
@@ -80,7 +79,7 @@
 				border-bottom: 1px solid #2a5eb2;
 				border-radius: 10px;
 				line-height: 1.5em;
-				margin-bottom: 1em;
+				margin-bottom: 4em;
 				padding-left: 1em;
 			}
 			
@@ -97,34 +96,37 @@
 			div.summary i {
 				display: block;
 				line-height: 2em;
-				font-size: 1.1em;
+				font-size: 1.5em;
 				font-style: normal;
 				text-indent: 1em;
 				margin-bottom: 3px;
-				border-bottom: 1px dotted #88A2CC;
-				border-radius: 3px;
+				border-bottom: 2px solid #fff;
+				border-radius: 8px;
+				background-color: #000;
+				color: #fff
 			}
 			
 			div.summary i::after {
 				width: 50px;
-				padding-right: 14px;
+				padding-right: 30px;
 				font-size: 16px;
 				cursor: pointer;
 				color: #fff;
-				content: 'Copy';
+				content: 'COPY';
 				background-color: #71aa46;
-				border-radius: 5px;
+				/*border-radius: 5px;*/
 				float: right;
 				text-align: center;
 			}
 			
 			div.summary i:hover {
-				background-color: #c3c655;
+				/*background-color: #c3c655;*/
 			}
 			
 			div.summary i:first-child {
-				border-top: 1px dotted #88A2CC;
-				border-radius: 3px;
+				/*border-top: 1px dotted #88A2CC;*/
+				border-top: 2px solid #fff;
+				border-radius: 8px;
 			}
 			
 			div.summary i:last-child {
@@ -137,7 +139,12 @@
 	<body>
 		<div class="app">
 			<div class="header">
-				header
+				<b>重要说明：</b>
+				<p>本文档仅为记录一些常见知识所用，目前只支持Chrome和FireFox。
+					<a href="http://linuxtools-rst.readthedocs.io/zh_CN/latest/index.html" target="_blank">linux学习</a>
+					<a href="https://developer.mozilla.org/en-US/docs/Web" target="_blank">Web学习英文版</a>
+					<a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">Web学习中文版</a>
+				</p>
 			</div>
 			<div class="main">
 				<div class="side">
@@ -286,9 +293,7 @@
 				</div>
 			</div>
 		</div>
-		
-		
-		
+
 		<!--script-->
 		<script>
 			function fireCopy(sp) {
@@ -323,7 +328,7 @@
 					items[i].addEventListener('click', function(evt) {
 						var rect = evt.target.getBoundingClientRect();
 						var x = evt.clientX;
-						var w = 64;
+						var w = 80;
 						var rem = Number(rect.right) - Number(x);
 						if(rem <= w) {
 							fireCopy(evt.target);
