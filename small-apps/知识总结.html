@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>知识汇总</title>
+		<style>
+			html {
+				font-size: 14px;
+				font-family: "arial, helvetica, sans-serif";
+			}
+			
+			html,
+			body,
+			div.app {
+				height: 100%;
+				width: 100%;
+				background-color: #fff;
+				min-width: 780px;
+			}
+			
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			div.header {
+				width: 100%;
+				height: 40px;
+				border: 1px solid #333;
+			}
+			
+			div.main {
+				width: 100%;
+				height: calc(100% - 42px);
+			}
+			
+			div.side {
+				float: left;
+				width: 25%;
+				height: 99%;
+			}
+			
+			div.side>ul {}
+			
+			div.side>ul li {
+				display: block;
+				margin-bottom: 1.5em;
+				background-color: #88a2cc;
+				color: #fff;
+				font-size: 1.2em;
+				font-weight: 800;
+				line-height: 2em;
+				cursor: pointer;
+				min-width: 155px;
+			}
+			
+			div.side>ul li:hover,
+			.active {
+				background-color: #2a5eb2 !important;
+			}
+			
+			div.content {
+				float: right;
+				width: calc(75% - 4em);
+				height: 100%;
+				min-width: 550px;
+				margin-left: 1em;
+				margin-right: 1em;
+			}
+			
+			div.content>div.category {
+				padding-top: 1em;
+				margin-bottom: 3em;
+			}
+			
+			div.category-point {
+				border-top: 1px solid #2a5eb2;
+				border-bottom: 1px solid #2a5eb2;
+				border-radius: 10px;
+				line-height: 1.5em;
+				margin-bottom: 1em;
+				padding-left: 1em;
+			}
+			
+			div.category-name {
+				padding-bottom: 5px;
+				font-size: 1.2em;
+			}
+			
+			div.category-point>div.title {
+				font-size: 1.2em;
+				font-weight: bold;
+			}
+			
+			div.summary i {
+				display: block;
+				line-height: 2em;
+				font-size: 1.1em;
+				font-style: normal;
+				text-indent: 1em;
+				margin-bottom: 3px;
+				border-bottom: 1px dotted #88A2CC;
+				border-radius: 3px;
+			}
+			
+			div.summary i::after {
+				width: 50px;
+				padding-right: 14px;
+				font-size: 16px;
+				cursor: pointer;
+				color: #fff;
+				content: 'Copy';
+				background-color: #71aa46;
+				border-radius: 5px;
+				float: right;
+				text-align: center;
+			}
+			
+			div.summary i:hover {
+				background-color: #c3c655;
+			}
+			
+			div.summary i:first-child {
+				border-top: 1px dotted #88A2CC;
+				border-radius: 3px;
+			}
+			
+			div.summary i:last-child {
+				margin-bottom: .5em;
+				border-bottom: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="app">
+			<div class="header">
+				header
+			</div>
+			<div class="main">
+				<div class="side">
+					<ul>
+						<li class="active">CentOS&Linux部分</li>
+						<!--<li>ECMAScript部分</li>
+						<li>CSS部分</li>
+						<li>工作总结</li>-->
+					</ul>
+				</div>
+
+				<div class="content">
+					<div class="category">
+						<div class="category-name">
+							CentOS&Linux
+						</div>
+						<div class="category-point">
+							<div class="title">重启命令</div>
+							<div class="summary">
+								<i>reboot</i>
+								<i>shutdown -r for now</i>
+							</div>
+							<div class="example"></div>
+						</div>
+
+						<div class="category-point">
+							<div class="title">强制删除目录</div>
+							<div class="summary">
+								<i>rm -rf directory</i>
+							</div>
+							<div class="example"></div>
+						</div>
+
+						<div class="category-point">
+							<div class="title">查看当前目录下的文件信息</div>
+							<div class="summary">
+								<i>ls -l</i>
+							</div>
+							<div class="example"></div>
+						</div>
+						<div class="category-point">
+							<div class="title">查看当前目录下文件个数</div>
+							<div class="summary">
+								<i>find ./ | wc -l</i>
+							</div>
+							<div class="example"></div>
+						</div>
+
+						<div class="category-point">
+							<div class="title">切换到上一个工作目录</div>
+							<div class="summary">
+								<i>cd -</i>
+							</div>
+							<div class="example"></div>
+						</div>
+
+						<div class="category-point">
+							<div class="title">切换到root目录</div>
+							<div class="summary">
+								<i>cd ~</i>
+							</div>
+							<div class="example"></div>
+						</div>
+						<div class="category-point">
+							<div class="title">显示当前路径</div>
+							<div class="summary">
+								<i>pwd</i>
+							</div>
+							<div class="example"></div>
+						</div>
+						<div class="category-point">
+							<div class="title">查找当前目录下以sql开头的文件或者目录</div>
+							<div class="summary">
+								<i>find ./ -name "sql*"</i>
+							</div>
+							<div class="example"></div>
+						</div>
+
+						<div class="category-point">
+							<div class="title">查看文件内容 和 查看文件内容并且显示行号</div>
+							<div class="summary">
+								<i>cat filename</i>
+								<i>cat -n filename</i>
+							</div>
+							<div class="example"></div>
+						</div>
+						<div class="category-point">
+							<div class="title">查看文件内容的前10行 和 查看文件内容的后5行</div>
+							<div class="summary">
+								<i>head -10 filename</i>
+								<i>tail -5 filename</i>
+							</div>
+							<div class="example"></div>
+						</div>
+						<div class="category-point">
+							<div class="title">查看两个文件间的差别</div>
+							<div class="summary">
+								<i>diff filename1 filename2</i>
+							</div>
+							<div class="example"></div>
+						</div>
+						<div class="category-point">
+							<div class="title">查看磁盘空间利用大小</div>
+							<div class="summary">
+								<i>df -h</i>
+							</div>
+							<div class="example"></div>
+						</div>
+						<div class="category-point">
+							<div class="title">查看当前目录所占空间大小</div>
+							<div class="summary">
+								<i>du -sh</i>
+							</div>
+							<div class="example"></div>
+						</div>
+						<div class="category-point">
+							<div class="title">查看当前目录下所有子文件夹排序后的大小</div>
+							<div class="summary">
+								<i>for i in `ls`; do du -sh $i; done | sort</i>
+								<i>du -sh `ls` | sort</i>
+							</div>
+							<div class="example"></div>
+						</div>
+						<div class="category-point">
+							<div class="title">打包是将多个文件归并到一个文件</div>
+							<div class="summary">
+								<i>tar -cvf etc.tar /etc</i>
+							</div>
+							<div class="example"></div>
+						</div>
+						<div class="category-point">
+							<div class="title">压缩</div>
+							<div class="summary">
+								<i>gzip demo.txt</i>
+							</div>
+							<div class="example"></div>
+						</div>
+						<div class="category-point">
+							<div class="title">解包</div>
+							<div class="summary">
+								<i>tar -xvf demo.tar</i>
+							</div>
+							<div class="example"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<!--script-->
+		<script>
+			function fireCopy(sp) {
+				function _getSelectText(_element) {
+					var selectedText = "";
+					var selection = window.getSelection();
+					var range = document.createRange();
+
+					range.selectNodeContents(_element);
+					selection.removeAllRanges();
+					selection.addRange(range);
+
+					selectedText = selection.toString();
+					return selectedText;
+				}
+
+				function _clearSelection() {
+					window.getSelection().removeAllRanges();
+				}
+
+				function _doCopy() {
+					document.execCommand('copy');
+				}
+				_getSelectText(sp);
+				_doCopy();
+				_clearSelection();
+			}
+
+			function registerCopy() {
+				var items = document.getElementsByTagName('i');
+				for(var i = 0, len = items.length; i < len; i++) {
+					items[i].addEventListener('click', function(evt) {
+						var rect = evt.target.getBoundingClientRect();
+						var x = evt.clientX;
+						var w = 64;
+						var rem = Number(rect.right) - Number(x);
+						if(rem <= w) {
+							fireCopy(evt.target);
+						}
+					}, false);
+				}
+			}
+
+			function ready() {
+				registerCopy();
+			}
+			window.onload = ready;
+		</script>
+
+	</body>
+
+</html>
